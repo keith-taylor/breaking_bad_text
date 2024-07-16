@@ -190,8 +190,8 @@ def format_word(input_word: str, search_chars: str) -> str:
     # get the index of the matched_element in elements_list_lower
     matched_element_index = elements_list_lower.index(search_chars.lower())
     
-    return (f"[white]{input_word.split(search_chars)[0]}[bold green]{elements_list[matched_element_index]}"
-            f"[/bold green]{input_word.split(search_chars)[1]}")
+    return (f"[white]{input_word.split(search_chars)[0]}[bold white on green]{elements_list[matched_element_index]}"
+            f"[/bold white on green]{input_word.split(search_chars)[1]}")
 
 
 def generate_word_sequence(specified_length: int) -> List:
