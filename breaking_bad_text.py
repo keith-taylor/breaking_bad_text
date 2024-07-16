@@ -26,5 +26,6 @@ max_words_to_change = 2  # set the max value for words to format
 output_list, elements_matched = break_it_bad(titles_text, max_words_to_change)
 
 for each_line in output_list:
-    print(each_line)
+    print('\n', each_line)
     time.sleep(0.66)
+print('\n')
