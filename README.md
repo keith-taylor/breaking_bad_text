@@ -2,9 +2,9 @@
 
  This is a short Python programme that takes some input text (a list of strings) and formats the text to look like the title sequence of the TV series Breaking Bad.
 
-![](/home/keith/code/breaking_bad_text/img/download.png) 
+![](img/download.png) 
 
-![](/home/keith/code/breaking_bad_text/img/output.png) 
+![](img/output.png) 
 
 The python programme has a list of chemical elements. It breaks down the input text into:
 
