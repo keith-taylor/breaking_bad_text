@@ -14,7 +14,7 @@ It uses the characters as search terms to search the  elements list for matches 
 
 The order in which the words are used is randomised to stop the changes being biased towards the start of the line of text.
 
-There is a list of words to ignore, for example prepositions, conjunctions, but also verbs and job titles. This keeps the example text looking like the real thing. 
+There is a list of words to ignore, for example prepositions, conjunctions, but also verbs and job titles. This keeps the example text looking like the real thing.  
 
 #### Installation
 
