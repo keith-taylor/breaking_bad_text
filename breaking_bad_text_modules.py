@@ -183,14 +183,16 @@ def is_element(search_chars: str) -> Tuple[bool, Optional[str]]:
         matched_element = None
         return char_match_found, matched_element   # if no match is found
 
-def generate_super(atomic_number: str):
+def generate_superscript_numb(number: str):
     """
-    
+    Takes some numbers as strings and uses a map to convert each digit to superscript.
+    :param: number - integer as string
+    :return: the same number as a superscript string
     """
     super_map = {
     '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'
     }
-    return ''.join(super_map.get(digit, digit) for digit in atomic_number)
+    return ''.join(super_map.get(digit, digit) for digit in number)
 
 def format_word(input_word: str, search_chars: str) -> str:
     """
@@ -204,7 +206,7 @@ def format_word(input_word: str, search_chars: str) -> str:
     font_size=32
     # get the index of the matched_element in elements_list_lower
     matched_element_index = elements_list_lower.index(search_chars.lower())
-    atomic_numb_superscript  = generate_super(str(matched_element_index))
+    atomic_numb_superscript  = generate_superscript_numb(str(matched_element_index))
 
     return (f"[white size={font_size}]{input_word.split(search_chars)[0]}[bold white on green]{tuple(elements.items())[matched_element_index][0]}{atomic_numb_superscript}"
             f"[/bold white on green]{input_word.split(search_chars)[1]}")

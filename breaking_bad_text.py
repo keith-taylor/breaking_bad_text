@@ -27,4 +27,4 @@ output_list, elements_matched = break_it_bad(titles_text, max_words_to_change)
 
 for each_line in output_list:
     print('\n', each_line, '\n')
-    time.sleep(0.5)
+    time.sleep(0.65)
