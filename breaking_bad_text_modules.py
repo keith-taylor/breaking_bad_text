@@ -2,36 +2,42 @@ import random
 from typing import List, Tuple, Optional 
 
 words_to_ignore_list = [
- 'a', 'be', 'by', 'for', 'from', 'I', 'in', 'is', 'it', 'of', 'the', 'to',
- 'casting', 'created', 'c.s.a.', 'Designer', 'directed', 'Director', 'edited',
- 'guest',  'music', 'photography', 'production', 'starring', 'written'
+'a', 'be', 'by', 'for', 'from', 'I', 'in', 'is', 'it', 'of', 'the', 'to',
+'casting', 'created', 'c.s.a.', 'designer', 'directed', 'director', 'edited',
+'guest',  'music', 'photography', 'production', 'starring', 'written'
 ]
 
 
-elements_list = [
-    'Ac', 'Ag', 'Al', 'Am', 'Ar', 'As', 'At', 'Au', 'B', 'Ba',
-    'Be', 'Bh', 'Bi', 'Bk', 'Br', 'C', 'Ca', 'Cd', 'Ce', 'Cf',
-    'Cl', 'Cm', 'Co', 'Cr', 'Cs', 'Cu', 'Db', 'Ds', 'Dy', 'Er',
-    'Es', 'Eu', 'F', 'Fe', 'Fm', 'Fr', 'Ga', 'Gd', 'Ge', 'H',
-    'He', 'Hf', 'Hg', 'Ho', 'Hs', 'I', 'In', 'Ir', 'K', 'Kr',
-    'La', 'Li', 'Lr', 'Lu', 'Md', 'Mg', 'Mn', 'Mo', 'Mt', 'N',
-    'Na', 'Nb', 'Nd', 'Ne', 'Ni', 'No', 'Np', 'O', 'Os', 'P',
-    'Pa', 'Pb', 'Pd', 'Pm', 'Po', 'Pr', 'Pt', 'Pu', 'Ra', 'Rb',
-    'Re', 'Rf', 'Rg', 'Rh', 'Rn', 'Ru', 'S', 'Sb', 'Sc', 'Se',
-    'Sg', 'Si', 'Sm', 'Sn', 'Sr', 'Ta', 'Tb', 'Tc', 'Te', 'Th',
-    'Ti', 'Tl', 'Tm', 'U', 'Uub', 'Uuh', 'Uuo', 'Uup', 'Uuq', 'Uus',
-    'Uut', 'V', 'W', 'Xe', 'Y', 'Yb', 'Zn', 'Zr'
-]
-
-def convert_list_of_strings_to_lower(input_list: List[str]) -> List[str]:
-    output_list_as_lower: List[str]  = []
-    for each_element in input_list:
-            output_list_as_lower.append(str(each_element.lower()))
-    return output_list_as_lower
+elements = {
+"Ac": 89,  "Ag": 47,  "Al": 13,  "Am": 95,  "Ar": 18,  
+"As": 33,  "At": 85,  "Au": 79,  "B": 5,   "Ba": 56,
+"Be": 4,   "Bh": 107, "Bi": 83,  "Bk": 97,  "Br": 35,  
+"C": 6,    "Ca": 20,  "Cd": 48,  "Ce": 58,  "Cf": 98,
+"Cl": 17,  "Cm": 96,  "Cn": 112, "Co": 27,  "Cr": 24,  
+"Cs": 55,  "Cu": 29,  "Db": 105, "Ds": 110, "Dy": 66,
+"Er": 68,  "Es": 99,  "Eu": 63,  "F": 9,    "Fe": 26,  
+"Fl": 114, "Fm": 100, "Fr": 87,  "Ga": 31,  "Gd": 64,
+"Ge": 32,  "H": 1,    "He": 2,   "Hf": 72,  "Hg": 80,  
+"Ho": 67,  "Hs": 108, "I": 53,   "In": 49,  "Ir": 77,
+"K": 19,   "Kr": 36,  "La": 57,  "Li": 3,   "Lr": 103, 
+"Lu": 71,  "Lv": 116, "Mc": 115, "Md": 101, "Mg": 12,
+"Mn": 25,  "Mo": 42,  "Mt": 109, "N": 7,    "Na": 11,  
+"Nb": 41,  "Nd": 60,  "Ne": 10,  "Nh": 113, "Ni": 28,
+"No": 102, "Np": 93,  "O": 8,    "Og": 118, "Os": 76,  
+"P": 15,   "Pa": 91,  "Pb": 82,  "Pd": 46,  "Pm": 61,
+"Po": 84,  "Pr": 59,  "Pt": 78,  "Pu": 94,  "Ra": 88,  
+"Rb": 37,  "Re": 75,  "Rf": 104, "Rg": 111, "Rh": 45,
+"Rn": 86,  "Ru": 44,  "S": 16,   "Sb": 51,  "Sc": 21,  
+"Se": 34,  "Sg": 106, "Si": 14,  "Sm": 62,  "Sn": 50,
+"Sr": 38,  "Ta": 73,  "Tb": 65,  "Tc": 43,  "Te": 52,  
+"Th": 90,  "Ti": 22,  "Tl": 81,  "Tm": 69,  "Ts": 117,
+"U": 92,   "V": 23,   "W": 74,   "Xe": 54,  "Y": 39,   
+"Yb": 70,  "Zn": 30,  "Zr": 40
+}
 
 # convert to lower case to match case of search terms used 
-elements_list_lower = convert_list_of_strings_to_lower(elements_list)
-words_to_ignore_list_lower = convert_list_of_strings_to_lower(words_to_ignore_list)
+elements_list_lower = [string.lower() for string in elements]
+words_to_ignore_list_lower = [string.lower() for string in words_to_ignore_list]
 
 
 def break_it_bad(input_text: List[str], max_words_to_change: int):
@@ -82,7 +88,7 @@ def lines_into_words(input_line_string: str, max_words_to_change: int,
     for i in word_sequence:
         # get each word in turn
         word: str = input_line_word_list[i]
-        if not ((word.lower() in words_to_ignore_list) or (num_words_changed == max_words_to_change) or len(word) < 2):
+        if not ((word.lower() in words_to_ignore_list_lower) or (num_words_changed == max_words_to_change) or len(word) < 2):
             # If none of these condition are true...
             #   then send the word to be processed into chars and checked against the elements list for matches
             word, char_match_found, elements_matched = words_into_chars(word, elements_matched)
@@ -177,6 +183,14 @@ def is_element(search_chars: str) -> Tuple[bool, Optional[str]]:
         matched_element = None
         return char_match_found, matched_element   # if no match is found
 
+def generate_super(atomic_number: str):
+    """
+    
+    """
+    super_map = {
+    '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'
+    }
+    return ''.join(super_map.get(digit, digit) for digit in atomic_number)
 
 def format_word(input_word: str, search_chars: str) -> str:
     """
@@ -187,10 +201,12 @@ def format_word(input_word: str, search_chars: str) -> str:
     :param: search_chars - used to get the index of the matched term in the elements lists and to split the input word.
     :return: the reformatted text string.
     """
+    font_size=32
     # get the index of the matched_element in elements_list_lower
     matched_element_index = elements_list_lower.index(search_chars.lower())
-    
-    return (f"[white]{input_word.split(search_chars)[0]}[bold white on green]{elements_list[matched_element_index]}"
+    atomic_numb_superscript  = generate_super(str(matched_element_index))
+
+    return (f"[white size={font_size}]{input_word.split(search_chars)[0]}[bold white on green]{tuple(elements.items())[matched_element_index][0]}{atomic_numb_superscript}"
             f"[/bold white on green]{input_word.split(search_chars)[1]}")
 
 
