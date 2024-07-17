@@ -4,7 +4,7 @@ This is a short Python programme that takes some input text (a list of strings) 
 
 ![](img/download.png) 
 
-![](img/output.png) 
+![](img/output.png)
 
 The python programme has a list of chemical elements. It breaks down the input text into:
 
