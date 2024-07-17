@@ -6,6 +6,7 @@ This is a short Python programme that takes some input text (a list of strings) 
 
 ![](img/output.png)
 
+
 The python programme has a list of chemical elements. It breaks down the input text into:
 
 `individual lines > words > characters`
