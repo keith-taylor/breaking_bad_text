@@ -36,7 +36,7 @@ elements = {
 }
 
 # convert to lower case to match case of search terms used 
-elements_list_lower = [string.lower() for string in elements]
+# elements_list_lower = [string.lower() for string in elements]
 words_to_ignore_list_lower = [string.lower() for string in words_to_ignore_list]
 
 
@@ -106,7 +106,7 @@ def lines_into_words(input_line_string: str, max_words_to_change: int,
 def words_into_chars(input_word: str, elements_matched: List[str]) -> Tuple[str, bool, List[str]]:
     """
     Takes a text string and breaks this into a list of chars which is then used to generate 2-letter 
-    and 1-letter search terms that are sent to is_element to check if they are indeed elements.
+    and 1-letter search terms that are sent to is_an_element to check if they are indeed elements.
     The following preferences are given: 2-char un-used matches, 1-char un-used matches,
     2-char previously used matches, 1-char previously used matches.
     Where matches are mader char formatting is changed to reflect this before the string is returned.
@@ -124,7 +124,7 @@ def words_into_chars(input_word: str, elements_matched: List[str]) -> Tuple[str,
     for i in range(1, len(list_of_chars)):  # get a 2 char search term
         search_chars: str = list_of_chars[i - 1] + list_of_chars[i]
         if search_chars.lower() not in elements_matched:  # try novel matches only
-            char_match_found, matched_element = is_element(search_chars)
+            char_match_found, matched_element = is_an_element(search_chars)
             if char_match_found is True:
                 elements_matched.append(search_chars.lower())
                 # exit with a match (if found)
@@ -135,7 +135,7 @@ def words_into_chars(input_word: str, elements_matched: List[str]) -> Tuple[str,
     for i in range(0, len(list_of_chars)):  # try a one char match
         search_chars: str = list_of_chars[i]
         if search_chars.lower() not in elements_matched:  # try novel matches only
-            char_match_found, matched_element = is_element(search_chars)
+            char_match_found, matched_element = is_an_element(search_chars)
             if char_match_found is True: 
                 elements_matched.append(search_chars.lower())
                 # exit with a match (if found)
@@ -145,7 +145,7 @@ def words_into_chars(input_word: str, elements_matched: List[str]) -> Tuple[str,
     # Try for 2-char matches (accepting previously used matches) 
     for i in range(1, len(list_of_chars)):  # get a 2 char search term
         search_chars: str = list_of_chars[i - 1] + list_of_chars[i]
-        char_match_found, matched_element = is_element(search_chars)
+        char_match_found, matched_element = is_an_element(search_chars)
         if char_match_found is True:
             elements_matched.append(search_chars.lower())
             # exit with a match (if found)
@@ -155,7 +155,7 @@ def words_into_chars(input_word: str, elements_matched: List[str]) -> Tuple[str,
     # Try for 1-char matches (accepting previously used matches)
     for i in range(0, len(list_of_chars)):  # try a one char match
         search_chars: str = list_of_chars[i]
-        char_match_found, matched_element = is_element(search_chars)
+        char_match_found, matched_element = is_an_element(search_chars)
         if char_match_found is True: 
             elements_matched.append(search_chars.lower())
             # exit with a match (if found)
@@ -167,21 +167,21 @@ def words_into_chars(input_word: str, elements_matched: List[str]) -> Tuple[str,
     return input_word, char_match_found, elements_matched
 
 
-def is_element(search_chars: str) -> Tuple[bool, Optional[str]]:
+def is_an_element(search_chars: str) -> Tuple[bool, Optional[str]]:
     """
-    Takes an input string and checks if it's in 'elements_list_lower'.
+    Takes an input string and checks if it's in 'elements_dict'.
     :param search chars: two or one char search term
     :return: char_match_found: bool
     :return: match_found, the element that was matched
     """
-    char_match_found = False
-    if search_chars.lower() in elements_list_lower:
-        char_match_found = True
-        matched_element = search_chars.lower()
-        return char_match_found, matched_element  # if a match is found: is_element
-    else:
-        matched_element = None
-        return char_match_found, matched_element   # if no match is found
+    for symbol in elements.keys():
+        if  symbol.lower() == search_chars.lower():
+            char_match_found = True
+            return char_match_found, symbol  # if a match is found: is_an_element
+        else:
+            char_match_found = False
+            symbol = ""
+            return char_match_found, symbol   # if no match is found
 
 def generate_superscript_numb(number: str):
     """
